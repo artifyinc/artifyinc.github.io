@@ -9,14 +9,16 @@ body{font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Apple SD Go
 h1{font-size:1.7em;margin:.2em 0 .6em} h2{font-size:1.25em;margin-top:2em}
 .table{overflow-x:auto;margin:1em 0} table{border-collapse:collapse;width:100%;font-size:.95em} th,td{border:1px solid #ddd;padding:8px;text-align:left;vertical-align:top} th{background:#f6f6f6}
 code{font-size:.92em;background:#f3f3f3;padding:0 .25em;border-radius:3px;word-break:break-all}
-a{color:#b8456a} [id]{scroll-margin-top:16px}
+a{color:#b8456a;overflow-wrap:anywhere} [id]{scroll-margin-top:16px} tbody th{width:6.5em}
 .lang{font-size:.95em;margin-bottom:1.2em} .lang a{padding:4px 2px} .lang a[aria-current]{font-weight:700;color:#222;text-decoration:none}
 article+article{border-top:1px solid #ddd;margin-top:3em;padding-top:1em}
 .js article+article{border-top:0;margin-top:0;padding-top:0}
+td{hyphens:auto;-webkit-hyphens:auto}
+@media (max-width:420px){body{padding:16px 14px 48px} th,td{padding:6px}}
 </style>
 </head>
 <body>
-<nav class="lang"><a href="?lang=en" hreflang="en" lang="en">English</a> · <a href="?lang=ko" hreflang="ko" lang="ko">한국어</a></nav>
+<nav class="lang"><a href="?lang=en#en" hreflang="en" lang="en">English</a> · <a href="?lang=ko#ko" hreflang="ko" lang="ko">한국어</a></nav>
 
 <article id="en" lang="en">
 <h1>Privacy Policy — Pure Study (순공타이머)</h1>
@@ -34,29 +36,31 @@ article+article{border-top:1px solid #ddd;margin-top:3em;padding-top:1em}
 <li><strong>The mute switch</strong>: whether the button clicks and alarm sound are on;</li>
 <li><strong>Your choice about usage statistics</strong>, the last day whose study time range was sent (see below), and the ID usage statistics were last sent under, so you can still ask for that data to be deleted after you turn sending off.</li>
 </ul>
-<p>The app does not send any of this to us. It is deleted when you uninstall the app or clear its data in Android settings.</p>
+<p>The app does not send any of this to us. It is deleted when you uninstall the app or clear its data in Android settings (if Android backup is on, reinstalling the app brings back your study time and mute switch from the backup).</p>
 <p>When a countdown ends while the app is closed, the "Time's up!" notification is made by the app on your phone; it does not come from a server.</p>
 
 <h2 id="en-backup">Android backup</h2>
-<p>So that you keep your history when you change phones, your <strong>study time for each day</strong> and the <strong>mute switch</strong> are included in Android's backup to your Google account and in phone-to-phone transfer. The running timer and your choice about usage statistics are not included. This backup is made by Android and kept in your own Google account; we cannot see or access it. You can turn it off in Android settings (Google › Backup), and Google's terms apply to it.</p>
+<p>So that you keep your history when you change phones, your <strong>study time for each day</strong> and the <strong>mute switch</strong> are included in Android's backup to your Google account and in phone-to-phone transfer. The running timer and your choice about usage statistics are not included. This backup is made by Android and kept in your own Google account; we cannot see or access it. You can turn it off or delete it in Android settings (Google › Backup); Google keeps and deletes it under its own terms (for example, backups of a phone not used for a long time expire).</p>
 
 <h2 id="en-firebase">Data sent to Google Firebase</h2>
 <p>The app uses two Google Firebase services: <strong>Analytics</strong> (usage statistics) and <strong>Crashlytics</strong> (crash reports). Nothing else in the app goes online.</p>
 <div class="table"><table><thead><tr><th>Data</th><th>What exactly</th><th>Why</th></tr></thead><tbody>
 <tr><td>Timer use</td><td><code>timer_start</code> when the big button starts the timer: stopwatch or countdown, whether a paused run goes on, and for a countdown the time set in whole minutes. <code>countdown_done</code> when a countdown reaches zero, with the time set in minutes.</td><td>see whether the timer is used as a countdown or a stopwatch and whether countdowns are finished</td></tr>
 <tr><td>Daily study time range</td><td><code>study_day</code>, at the first open after a day with study time: only a range such as <code>1-2h</code> (one of 0–30 min, 30 min–1 h, 1–2 h, 2–3 h, 3–4 h, 4–6 h, 6–8 h, 8 h+) and how many days ago that day was, for at most the last 7 days. Never the exact time, and never today.</td><td>see how much people study with the app</td></tr>
-<tr><td>App activity Analytics records by itself</td><td>first open, app sessions, how long the app was in use, app and Android updates</td><td>count active users and how long they keep using the app</td></tr>
-<tr><td>Crashes and diagnostics</td><td>the technical record of a crash (stack trace) and the app's state at that moment; device model and maker, Android version, app version, language and screen size</td><td>find and fix crashes</td></tr>
+<tr><td>App activity Analytics records by itself</td><td>first open, app sessions, how long the app was in use, app and Android updates, the app's data being cleared or the app being removed, and that the app was installed from Google Play</td><td>count active users and how long they keep using the app</td></tr>
+<tr><td>Device information</td><td>device model and maker, Android version, app version, language and screen size (with usage statistics and with crash reports)</td><td>see on which phones the app runs and find crashes that happen only on some</td></tr>
+<tr><td>Crashes</td><td>the technical record of a crash (stack trace), the app's state at that moment and the last usage events before it</td><td>find and fix crashes</td></tr>
 <tr><td>Approximate location</td><td>country and city estimated by Google from the device's IP address (Google Analytics does not store the IP address)</td><td>see in which countries the app is used</td></tr>
 <tr><td>App identifiers</td><td>random IDs Firebase creates for this installation (Firebase installation ID, Analytics app instance ID, Crashlytics installation ID)</td><td>count users and crashes without knowing who they are</td></tr>
 </tbody></table></div>
 <p>The app never sends your name, e-mail address, phone number, contacts, photos, files or precise location (it has no location permission), and never your exact study time. It does not collect the Android advertising ID: the advertising ID permissions are removed from the app, and the consent settings for advertising storage, ad user data and ad personalization are always "denied". The automatic screen-view report is turned off.</p>
 <p>The data is sent encrypted (HTTPS) to Google, which processes it on our behalf as a service provider (processor). We do not sell data and do not share it with anyone for advertising. How Google uses data: <a href="https://policies.google.com/technologies/partner-sites">https://policies.google.com/technologies/partner-sites</a>. Firebase privacy and security: <a href="https://firebase.google.com/support/privacy">https://firebase.google.com/support/privacy</a></p>
-<p id="en-transfers"><strong>Where it is processed:</strong> Google may process this data on servers in the United States and other countries. For data from the EEA, the UK and Switzerland, Google's data processing terms for Firebase include the safeguards required for such transfers (such as the EU Standard Contractual Clauses).</p>
+<p id="en-transfers"><strong>Who processes it and where:</strong> we entrust the processing of the data above to Google LLC (Firebase). It is sent over the network from time to time while you use the app, and may be processed on Google's servers in the United States and other countries, for the periods below. You can refuse it with the switch below. For data from the EEA, the UK and Switzerland, Google's data processing terms for Firebase include the safeguards required for such transfers (such as the EU Standard Contractual Clauses).</p>
+<p id="en-basis"><strong>Why we may process it:</strong> in the EU, the EEA, the UK and Switzerland, only with your consent (see below). Elsewhere, sending is on by default because it is limited to pseudonymous technical data needed to keep the app working and improve it (in Korea, Article 15(1)(6) of the Personal Information Protection Act; elsewhere, our legitimate interest where the law provides for it), and you can turn it off at any time.</p>
 
 <h2 id="en-retention">How long it is kept</h2>
 <ul>
-<li>Usage statistics: up to 14 months, then deleted automatically.</li>
+<li>Usage statistics: the events tied to an installation are kept for up to 14 months, then deleted automatically. Totals in reports that no longer point to any installation (such as "how many countdowns were finished last month") may be kept longer.</li>
 <li>Crash reports: up to 90 days, then deleted automatically.</li>
 <li>Data on your phone and in your Android backup: until you delete it (see above).</li>
 </ul>
@@ -64,19 +68,19 @@ article+article{border-top:1px solid #ddd;margin-top:3em;padding-top:1em}
 <h2 id="en-controls">Turning it off and deleting your data</h2>
 <p>Tap the <strong>shield button</strong> at the top right of the screen, next to the mute switch, to open <strong>Privacy</strong>:</p>
 <ul>
-<li><strong>Send usage statistics and crash reports</strong> (switch): turned off, the app stops sending usage statistics and crash reports, from that moment and every time it opens afterwards, and crash reports kept on the phone and not yet sent are deleted. The timer works exactly the same either way. You can turn it back on at any time.</li>
+<li><strong>Send usage statistics and crash reports</strong> (switch): turned off, the app stops sending usage statistics and crash reports, from that moment and every time it opens afterwards, and crash reports kept on the phone and not yet sent are deleted. The timer works exactly the same either way. You can turn it back on at any time. Deleting your data (below) does not turn sending off; use this switch for that.</li>
 <li id="en-delete"><strong>Request deletion of my usage data</strong>: deletes from the phone the usage statistics and crash reports not yet sent and replaces the installation's IDs with new ones, so what was already sent is no longer linked to this phone. Your study time history is not touched.
 <ul>
-<li><strong>Delete and request by e-mail</strong>: the app first opens your e-mail app with a ready message to our address containing only the old ID, then deletes. When you send it, we delete the usage statistics already sent under that ID from Google Analytics (Google may take a few days to complete it) and reply within one month. Crash reports already sent cannot be deleted one by one; they disappear at the end of the 90 days above.</li>
+<li><strong>Delete and request by e-mail</strong>: the app first opens your e-mail app with a ready message to our address containing only the old ID, then deletes. If sending is off and nothing was sent since your last deletion, there is nothing to ask for, so it deletes on the phone without e-mail. When you send it, we delete the usage statistics already sent under that ID from Google Analytics (Google may take a few days to complete it) and reply within one month. Crash reports already sent cannot be deleted one by one; they disappear at the end of the 90 days above.</li>
 <li><strong>This phone only</strong>: deletes on the phone only, without e-mail.</li>
 </ul></li>
 </ul>
-<p>The data is not linked to your name or an account, so the ID in that message is the only way we can find it. If the app cannot open an e-mail app, it deletes nothing, so the old ID is not lost. Uninstalling the app also deletes the installation's IDs from the phone. For any other request, write to the e-mail address at the end of this page.</p>
+<p>The data is not linked to your name or an account, so the ID in that message is the only way we can find it. If the app cannot read the old ID or cannot open an e-mail app, it deletes nothing and tells you, so the old ID is not lost; try again later. Uninstalling the app also deletes the installation's IDs from the phone. For any other request, write to the e-mail address at the end of this page.</p>
 
 <h2 id="en-gdpr">Users in the EU, the EEA, the UK and Switzerland (GDPR)</h2>
-<p>If the phone's SIM, mobile network, language region or time zone points to the EU, the EEA, the UK or Switzerland, the app asks on the first open whether it may send usage statistics, and sends nothing before you answer. "Send" and "Don't send" weigh the same, and the timer works the same with either. You can change your answer at any time with the switch above.</p>
+<p>If the phone's SIM, mobile network, language region or time zone points to the EU, the EEA, the UK or Switzerland, the app asks whether it may send usage statistics and crash reports, every time it opens until you answer, and sends nothing before you answer. "Send" and "Don't send" weigh the same, and the timer works the same with either. You can change your answer at any time with the switch above.</p>
 <ul>
-<li><strong>Controller:</strong> Artify Inc. (contact below).</li>
+<li><strong>Controller:</strong> Artify Inc. (contact below). Google acts as our processor.</li>
 <li><strong>Purpose and legal basis:</strong> usage statistics and crash reports are processed only with your consent (Art. 6(1)(a) GDPR / UK GDPR), to fix crashes and understand how the timer is used. Withdrawing consent does not affect processing done before.</li>
 <li><strong>Your rights:</strong> you can ask for access to, correction or deletion of your data, restriction of or objection to its processing, and a copy of it (portability), and you can withdraw your consent at any time. Use the controls above or write to us; we answer within one month. Because the data is tied only to a random installation ID, we may ask you to send that ID with the "Delete and request by e-mail" button so we can find it.</li>
 <li><strong>Complaints:</strong> you can complain to the data protection authority of the country where you live or work.</li>
@@ -84,19 +88,28 @@ article+article{border-top:1px solid #ddd;margin-top:3em;padding-top:1em}
 <p>If you are under the age at which you can give this consent yourself in your country (16 in some EU countries), please ask a parent or guardian before choosing "Send", or choose "Don't send".</p>
 
 <h2 id="en-messages">Messages you send</h2>
-<p>If you send us a deletion request or any other e-mail, we receive your e-mail address and the content of the message. We use them only to handle your request and reply, do not sell or share them, and delete them when you ask.</p>
+<p>If you send us a deletion request or any other e-mail, we receive your e-mail address and the content of the message. We use them only to handle your request and reply, keep them only as long as needed for that and to keep a record of the request, do not sell or share them, and delete them when you ask.</p>
 
 <h2 id="en-permissions">Permissions</h2>
 <ul>
 <li><strong>Notifications</strong>: the "Time's up!" notification when a countdown ends while the app is closed.</li>
 <li><strong>Exact alarm</strong>: to ring at the exact second a countdown ends.</li>
 <li><strong>Vibration</strong>: the alarm vibrates in the rhythm of its beeps.</li>
-<li><strong>Internet and network state</strong>: only for Firebase (usage statistics and crash reports). The timer does not need the internet.</li>
+<li><strong>Internet and network state</strong>, and the permissions Firebase adds to send data (keeping the phone awake for a moment, asking Google Play how the app was installed): only for Firebase (usage statistics and crash reports). The timer does not need the internet.</li>
 </ul>
 <p>The app does not read your contacts, photos, location, microphone, camera or other apps.</p>
 
 <h2 id="en-children">Children</h2>
-<p>The app is meant for students aged 13 and over, is not directed at children under 13, and does not knowingly collect data from children under 13. The data described above is the same for everyone and never includes a name, contact details or precise location.</p>
+<p>The app is meant for students aged 13 and over, is not directed at children under 13, and does not knowingly collect data from children under 13. The app does not ask your age, so the data described above is the same for everyone and never includes a name, contact details or precise location. If you are under 14 in Korea, or under the age of digital consent in your country, please check with a parent or guardian, or turn "Send usage statistics and crash reports" off.</p>
+
+<h2 id="en-korea">Users in Korea</h2>
+<ul>
+<li><strong>Destruction:</strong> data on Google's servers is deleted automatically at the end of the periods above, or when we handle your deletion request; e-mails are deleted when they are no longer needed. Electronic records are deleted in a way that cannot be restored.</li>
+<li><strong>Security measures:</strong> data is sent encrypted (HTTPS) and tied only to random installation IDs; access to the Firebase console is limited to the staff who need it.</li>
+<li><strong>Your rights:</strong> you can ask to access, correct or delete your data or to stop its processing with the controls above or by e-mail below; a legal representative can ask for you. We answer within 10 days.</li>
+<li><strong>Privacy officer:</strong> Artify Inc., CEO — <a href="mailto:hc@artifyapp.com">hc@artifyapp.com</a></li>
+<li><strong>If your rights are infringed</strong>, you can also contact: Personal Information Infringement Report Center (privacy.kisa.or.kr, 118), Personal Information Dispute Mediation Committee (www.kopico.go.kr, 1833-6972), Supreme Prosecutors' Office (www.spo.go.kr, 1301), Korean National Police Agency (ecrm.police.go.kr, 182).</li>
+</ul>
 
 <h2 id="en-changes">Changes</h2>
 <p>If this policy changes, the new version will be published on this page with its update date. If the app starts sending new kinds of data, we will update this page before the app version that sends them is released.</p>
@@ -121,29 +134,39 @@ article+article{border-top:1px solid #ddd;margin-top:3em;padding-top:1em}
 <li><strong>무음 설정</strong>: 버튼 소리와 알람음을 켰는지</li>
 <li><strong>사용 통계 전송 여부</strong>, 순공시간 구간을 마지막으로 보낸 날(아래 참고), 그리고 사용 통계를 마지막으로 보낸 식별자(전송을 끈 뒤에도 그 데이터의 삭제를 요청할 수 있게)</li>
 </ul>
-<p>이 데이터는 저희에게 보내지 않습니다. 앱을 지우거나 Android 설정에서 앱 데이터를 지우면 삭제됩니다.</p>
+<p>이 데이터는 저희에게 보내지 않습니다. 앱을 지우거나 Android 설정에서 앱 데이터를 지우면 삭제됩니다(Android 백업이 켜져 있으면 앱을 다시 설치할 때 순공시간과 무음 설정이 백업에서 돌아옵니다).</p>
 <p>앱이 닫힌 사이 카운트다운이 끝날 때 뜨는 "시간 끝!" 알림은 폰에서 앱이 직접 띄우는 것이며 서버에서 오지 않습니다.</p>
 
 <h2 id="ko-backup">Android 백업</h2>
-<p>폰을 바꿔도 기록이 남도록, <strong>날짜별 순공시간</strong>과 <strong>무음 설정</strong>은 Android의 Google 계정 백업과 기기 간 데이터 이전에 포함됩니다. 달리던 타이머와 사용 통계 전송 여부는 포함되지 않습니다. 이 백업은 Android가 만들어 사용자 본인의 Google 계정에 보관하며, 저희는 보거나 접근할 수 없습니다. Android 설정(Google › 백업)에서 끌 수 있고, 백업에는 Google의 약관이 적용됩니다.</p>
+<p>폰을 바꿔도 기록이 남도록, <strong>날짜별 순공시간</strong>과 <strong>무음 설정</strong>은 Android의 Google 계정 백업과 기기 간 데이터 이전에 포함됩니다. 달리던 타이머와 사용 통계 전송 여부는 포함되지 않습니다. 이 백업은 Android가 만들어 사용자 본인의 Google 계정에 보관하며, 저희는 보거나 접근할 수 없습니다. Android 설정(Google › 백업)에서 끄거나 지울 수 있고, 보관과 삭제는 Google의 약관을 따릅니다(예: 오래 쓰지 않은 폰의 백업은 만료됨).</p>
 
 <h2 id="ko-firebase">Google Firebase로 보내는 데이터</h2>
 <p>앱은 Google Firebase의 두 서비스, <strong>Analytics</strong>(사용 통계)와 <strong>Crashlytics</strong>(오류 보고)를 씁니다. 그 밖에 앱에서 인터넷으로 나가는 것은 없습니다.</p>
 <div class="table"><table><thead><tr><th>항목</th><th>구체적으로</th><th>목적</th></tr></thead><tbody>
 <tr><td>타이머 사용</td><td><code>timer_start</code>: 큰 버튼으로 타이머를 시작할 때. 스톱워치인지 카운트다운인지, 멈췄던 것을 이어 가는지, 카운트다운이면 맞춘 시간(분 단위). <code>countdown_done</code>: 카운트다운이 0이 됐을 때, 맞춘 시간(분 단위).</td><td>카운트다운과 스톱워치 중 무엇을 쓰는지, 카운트다운을 끝까지 하는지 알기 위해</td></tr>
 <tr><td>하루 순공시간 구간</td><td><code>study_day</code>: 순공시간이 있었던 날 이후 처음 앱을 열 때. <code>1-2h</code> 같은 구간(0–30분, 30분–1시간, 1–2시간, 2–3시간, 3–4시간, 4–6시간, 6–8시간, 8시간 이상 중 하나)과 그날이 며칠 전인지만, 최근 7일 이내로 보냅니다. 정확한 시간과 오늘 기록은 보내지 않습니다.</td><td>앱으로 얼마나 공부하는지 알기 위해</td></tr>
-<tr><td>Analytics가 스스로 남기는 앱 활동</td><td>첫 실행, 앱 세션, 앱 사용 시간, 앱·Android 업데이트</td><td>사용자 수와 얼마나 계속 쓰는지 알기 위해</td></tr>
-<tr><td>오류와 진단</td><td>앱이 멈췄을 때의 기술 기록(스택 트레이스)과 그때의 앱 상태, 기기 모델·제조사, Android 버전, 앱 버전, 언어, 화면 크기</td><td>오류를 찾아 고치기 위해</td></tr>
+<tr><td>Analytics가 스스로 남기는 앱 활동</td><td>첫 실행, 앱 세션, 앱 사용 시간, 앱·Android 업데이트, 앱 데이터 삭제·앱 제거, Google Play에서 설치했다는 정보</td><td>사용자 수와 얼마나 계속 쓰는지 알기 위해</td></tr>
+<tr><td>기기 정보</td><td>기기 모델·제조사, Android 버전, 앱 버전, 언어, 화면 크기(사용 통계와 오류 보고에 함께)</td><td>어떤 폰에서 쓰는지, 일부 폰에서만 나는 오류를 찾기 위해</td></tr>
+<tr><td>오류</td><td>앱이 멈췄을 때의 기술 기록(스택 트레이스), 그때의 앱 상태, 직전의 사용 이벤트</td><td>오류를 찾아 고치기 위해</td></tr>
 <tr><td>대략적인 위치</td><td>Google이 기기의 IP 주소로 추정한 국가와 도시(Google Analytics는 IP 주소를 저장하지 않음)</td><td>어느 나라에서 쓰는지 알기 위해</td></tr>
 <tr><td>앱 식별자</td><td>Firebase가 이 설치에 만드는 무작위 식별자(Firebase 설치 ID, Analytics 앱 인스턴스 ID, Crashlytics 설치 ID)</td><td>누구인지 모르는 채로 사용자 수와 오류 수를 세기 위해</td></tr>
 </tbody></table></div>
 <p>앱은 이름, 이메일 주소, 전화번호, 연락처, 사진, 파일, 정확한 위치(위치 권한이 없음), 정확한 순공시간을 보내지 않습니다. Android 광고 ID도 수집하지 않습니다. 광고 ID 권한을 앱에서 제거했고, 광고 저장·광고용 사용자 데이터·광고 개인화 동의는 항상 "거부"로 둡니다. 자동 화면 조회 기록도 꺼 두었습니다.</p>
 <p>데이터는 암호화(HTTPS)되어 Google로 전송되고, Google이 저희를 대신해 수탁자로 처리합니다. 데이터를 판매하지 않으며 광고 목적으로 누구와도 공유하지 않습니다. Google의 데이터 사용: <a href="https://policies.google.com/technologies/partner-sites">https://policies.google.com/technologies/partner-sites</a> · Firebase 개인정보와 보안: <a href="https://firebase.google.com/support/privacy">https://firebase.google.com/support/privacy</a></p>
 <p id="ko-transfers"><strong>처리 위탁과 국외 이전:</strong> 위 데이터의 처리는 Google LLC(Firebase)에 위탁하며, 앱을 쓰는 동안 네트워크를 통해 수시로 전송되어 미국 등 Google의 서버에서 처리될 수 있습니다. 보관 기간은 아래와 같고, 아래 스위치로 전송을 거부할 수 있습니다. EEA·영국·스위스의 데이터에는 Firebase 데이터 처리 약관의 국외 이전 보호 조치(EU 표준계약조항 등)가 적용됩니다.</p>
+<div class="table"><table><tbody>
+<tr><th>이전받는 자</th><td>Google LLC (Firebase) — 문의: <a href="https://firebase.google.com/support/privacy">https://firebase.google.com/support/privacy</a></td></tr>
+<tr><th>이전 국가</th><td>미국 등 Google 데이터센터가 있는 국가</td></tr>
+<tr><th>이전 일시와 방법</th><td>앱을 쓰는 동안 수시로, 네트워크(HTTPS)로 전송</td></tr>
+<tr><th>이전 항목</th><td>위 "Google Firebase로 보내는 데이터" 표의 항목</td></tr>
+<tr><th>이용 목적·보유 기간</th><td>사용 통계·오류 보고 처리 — 아래 "보관 기간"까지</td></tr>
+<tr><th>거부 방법과 효과</th><td>방패 버튼 › "사용 통계·오류 보고 보내기"를 끄면 이전되지 않으며, 타이머는 똑같이 쓸 수 있습니다.</td></tr>
+</tbody></table></div>
+<p id="ko-basis"><strong>처리 근거:</strong> EU·EEA·영국·스위스에서는 동의가 있을 때만 처리합니다(아래 참고). 그 밖의 지역에서는 앱을 유지하고 고치는 데 필요한 가명의 기술 데이터로 한정해 기본으로 켜 두며(한국: 개인정보 보호법 제15조 제1항 제6호, 그 밖의 지역: 법이 정하는 경우 정당한 이익), 언제든 끌 수 있습니다.</p>
 
 <h2 id="ko-retention">보관 기간</h2>
 <ul>
-<li>사용 통계: 최대 14개월 뒤 자동 삭제</li>
+<li>사용 통계: 설치에 연결된 이벤트는 최대 14개월 뒤 자동 삭제. 더 이상 어떤 설치도 가리키지 않는 보고서의 합계(예: "지난달 끝까지 마친 카운트다운 수")는 더 오래 남을 수 있습니다.</li>
 <li>오류 보고: 최대 90일 뒤 자동 삭제</li>
 <li>폰과 Android 백업의 데이터: 사용자가 지울 때까지(위 참고)</li>
 </ul>
@@ -151,19 +174,19 @@ article+article{border-top:1px solid #ddd;margin-top:3em;padding-top:1em}
 <h2 id="ko-controls">전송 끄기와 데이터 삭제</h2>
 <p>화면 오른쪽 위 무음 버튼 옆의 <strong>방패 버튼</strong>을 누르면 <strong>개인정보</strong> 창이 열립니다.</p>
 <ul>
-<li><strong>사용 통계·오류 보고 보내기</strong>(스위치): 끄면 그 순간부터, 그리고 이후 앱을 열 때마다 사용 통계와 오류 보고를 보내지 않으며, 폰에 남아 아직 보내지 않은 오류 보고는 지웁니다. 켜든 끄든 타이머는 똑같이 쓸 수 있고, 언제든 다시 켤 수 있습니다.</li>
+<li><strong>사용 통계·오류 보고 보내기</strong>(스위치): 끄면 그 순간부터, 그리고 이후 앱을 열 때마다 사용 통계와 오류 보고를 보내지 않으며, 폰에 남아 아직 보내지 않은 오류 보고는 지웁니다. 켜든 끄든 타이머는 똑같이 쓸 수 있고, 언제든 다시 켤 수 있습니다. 아래의 데이터 삭제는 전송을 끄지 않으니, 끄려면 이 스위치를 쓰세요.</li>
 <li id="ko-delete"><strong>내 사용 데이터 삭제 요청</strong>: 폰에 남아 아직 보내지 않은 사용 통계와 오류 보고를 지우고 이 설치의 식별자를 새로 만들어, 이미 보낸 데이터가 더는 이 폰과 연결되지 않게 합니다. 순공시간 기록은 그대로 남습니다.
 <ul>
-<li><strong>지우고 메일로 요청</strong>: 앱이 먼저 예전 식별자만 담긴 메일을 저희 주소로 써서 메일 앱을 연 뒤 지웁니다. 그 메일을 보내 주시면 그 식별자로 이미 보낸 사용 통계를 Google Analytics에서 삭제하고(Google에서 완료까지 며칠 걸릴 수 있음) 한 달 안에 답장합니다. 이미 보낸 오류 보고는 하나씩 지울 수 없어서 위 90일이 지나면 사라집니다.</li>
+<li><strong>지우고 메일로 요청</strong>: 앱이 먼저 예전 식별자만 담긴 메일을 저희 주소로 써서 메일 앱을 연 뒤 지웁니다. 전송이 꺼져 있고 마지막 삭제 뒤로 보낸 것이 없으면 요청할 것이 없으므로 메일 없이 폰에서만 지웁니다. 그 메일을 보내 주시면 그 식별자로 이미 보낸 사용 통계를 Google Analytics에서 삭제하고(Google에서 완료까지 며칠 걸릴 수 있음) 한 달 안에 답장합니다. 이미 보낸 오류 보고는 하나씩 지울 수 없어서 위 90일이 지나면 사라집니다.</li>
 <li><strong>이 폰에서만</strong>: 메일 없이 폰에서만 지웁니다.</li>
 </ul></li>
 </ul>
-<p>데이터가 이름이나 계정과 연결되어 있지 않아서, 저희가 데이터를 찾을 수 있는 방법은 그 메일 속 식별자뿐입니다. 메일 앱을 열 수 없으면 예전 식별자를 잃지 않도록 아무것도 지우지 않습니다. 앱을 지우면 이 설치의 식별자도 폰에서 삭제됩니다. 그 밖의 열람·정정·삭제·처리정지 요청은 이 페이지 끝의 메일로 보내 주세요.</p>
+<p>데이터가 이름이나 계정과 연결되어 있지 않아서, 저희가 데이터를 찾을 수 있는 방법은 그 메일 속 식별자뿐입니다. 예전 식별자를 읽지 못하거나 메일 앱을 열 수 없으면, 식별자를 잃지 않도록 아무것도 지우지 않고 알려 드립니다. 잠시 뒤에 다시 해 주세요. 앱을 지우면 이 설치의 식별자도 폰에서 삭제됩니다. 그 밖의 열람·정정·삭제·처리정지 요청은 이 페이지 끝의 메일로 보내 주세요.</p>
 
 <h2 id="ko-gdpr">EU·EEA·영국·스위스 사용자 (GDPR)</h2>
-<p>폰의 SIM, 통신망, 언어 지역, 시간대 중 하나라도 EU·EEA·영국·스위스를 가리키면, 앱은 처음 열 때 사용 통계를 보내도 되는지 묻고 답하기 전에는 아무것도 보내지 않습니다. "보내기"와 "보내지 않기"는 똑같이 고를 수 있고, 어느 쪽이든 타이머는 똑같이 쓸 수 있습니다. 답은 위 스위치로 언제든 바꿀 수 있습니다.</p>
+<p>폰의 SIM, 통신망, 언어 지역, 시간대 중 하나라도 EU·EEA·영국·스위스를 가리키면, 앱은 답할 때까지 열 때마다 사용 통계와 오류 보고를 보내도 되는지 묻고, 답하기 전에는 아무것도 보내지 않습니다. "보내기"와 "보내지 않기"는 똑같이 고를 수 있고, 어느 쪽이든 타이머는 똑같이 쓸 수 있습니다. 답은 위 스위치로 언제든 바꿀 수 있습니다.</p>
 <ul>
-<li><strong>컨트롤러:</strong> Artify Inc.(아래 연락처)</li>
+<li><strong>개인정보처리자(컨트롤러):</strong> Artify Inc.(아래 연락처). Google은 수탁자로 처리합니다.</li>
 <li><strong>목적과 법적 근거:</strong> 사용 통계와 오류 보고는 오류를 고치고 타이머가 어떻게 쓰이는지 알기 위해, 사용자의 동의(GDPR·영국 GDPR 제6조 제1항 (a))가 있을 때만 처리합니다. 동의를 철회해도 그 전의 처리에는 영향이 없습니다.</li>
 <li><strong>권리:</strong> 자신의 데이터에 대한 열람, 정정, 삭제, 처리 제한, 처리 반대, 사본 받기(이동권)를 요청할 수 있고, 동의는 언제든 철회할 수 있습니다. 위 메뉴를 쓰거나 메일로 요청하시면 한 달 안에 답합니다. 데이터가 무작위 설치 식별자에만 연결되어 있어서, 찾기 위해 "지우고 메일로 요청" 버튼으로 그 식별자를 보내 달라고 부탁드릴 수 있습니다.</li>
 <li><strong>불만 제기:</strong> 거주하거나 일하는 나라의 개인정보 감독기관에 불만을 제기할 수 있습니다.</li>
@@ -171,19 +194,28 @@ article+article{border-top:1px solid #ddd;margin-top:3em;padding-top:1em}
 <p>사는 나라에서 이 동의를 스스로 할 수 있는 나이(EU 일부 국가는 16세)가 안 되었다면, "보내기"를 고르기 전에 부모님이나 보호자에게 물어보거나 "보내지 않기"를 골라 주세요.</p>
 
 <h2 id="ko-messages">보내 주신 메일</h2>
-<p>삭제 요청이나 그 밖의 메일을 보내시면 저희는 보낸 분의 이메일 주소와 메일 내용을 받습니다. 요청을 처리하고 답장하는 데만 쓰며, 판매하거나 공유하지 않고, 요청하시면 지웁니다.</p>
+<p>삭제 요청이나 그 밖의 메일을 보내시면 저희는 보낸 분의 이메일 주소와 메일 내용을 받습니다. 요청을 처리하고 답장하는 데만 쓰고, 그 처리와 요청 기록에 필요한 동안만 보관하며, 판매하거나 공유하지 않고, 요청하시면 지웁니다.</p>
 
 <h2 id="ko-permissions">권한</h2>
 <ul>
 <li><strong>알림</strong>: 앱이 닫힌 사이 카운트다운이 끝나면 "시간 끝!" 알림을 띄웁니다.</li>
 <li><strong>정확한 알람</strong>: 카운트다운이 끝나는 바로 그 초에 울리기 위해 씁니다.</li>
 <li><strong>진동</strong>: 알람음 박자에 맞춰 진동합니다.</li>
-<li><strong>인터넷·네트워크 상태</strong>: Firebase(사용 통계와 오류 보고)에만 씁니다. 타이머는 인터넷이 필요 없습니다.</li>
+<li><strong>인터넷·네트워크 상태</strong>, 그리고 Firebase가 전송을 위해 더하는 권한(잠시 화면이 꺼져도 동작 유지, Google Play에 설치 경로 묻기): Firebase(사용 통계와 오류 보고)에만 씁니다. 타이머는 인터넷이 필요 없습니다.</li>
 </ul>
 <p>앱은 연락처, 사진, 위치, 마이크, 카메라, 다른 앱의 내용을 읽지 않습니다.</p>
 
 <h2 id="ko-children">아동</h2>
-<p>앱은 13세 이상 학생을 위한 것으로, 13세 미만 아동을 대상으로 하지 않으며 13세 미만 아동의 데이터를 알면서 수집하지 않습니다. 위 데이터는 모든 사용자에게 같고 이름·연락처·정확한 위치를 포함하지 않습니다.</p>
+<p>앱은 13세 이상 학생을 위한 것으로, 13세 미만 아동을 대상으로 하지 않으며 13세 미만 아동의 데이터를 알면서 수집하지 않습니다. 앱은 나이를 묻지 않으므로 위 데이터는 모든 사용자에게 같고 이름·연락처·정확한 위치를 포함하지 않습니다. 한국에서 만 14세 미만이거나 사는 나라에서 스스로 동의할 수 있는 나이가 안 되었다면, 부모님이나 보호자와 함께 확인하거나 "사용 통계·오류 보고 보내기"를 꺼 주세요.</p>
+
+<h2 id="ko-korea">한국 사용자 안내</h2>
+<ul>
+<li><strong>파기 절차와 방법:</strong> Google 서버의 데이터는 위 보관 기간이 끝나거나 삭제 요청을 처리할 때 자동으로 삭제되고, 메일은 더 필요하지 않게 되면 지웁니다. 전자 기록은 복구할 수 없는 방법으로 삭제합니다.</li>
+<li><strong>안전성 확보조치:</strong> 데이터는 암호화(HTTPS)되어 전송되고 무작위 설치 식별자에만 연결되며, Firebase 콘솔 접근은 필요한 담당자로 제한합니다.</li>
+<li><strong>권리 행사:</strong> 위 메뉴나 아래 메일로 열람·정정·삭제·처리정지를 요청할 수 있고, 법정대리인이 대신 요청할 수 있습니다. 10일 안에 답합니다.</li>
+<li><strong>개인정보 보호책임자:</strong> Artify Inc. 대표 — <a href="mailto:hc@artifyapp.com">hc@artifyapp.com</a></li>
+<li><strong>권익침해 구제:</strong> 개인정보침해신고센터(privacy.kisa.or.kr, 국번 없이 118), 개인정보분쟁조정위원회(www.kopico.go.kr, 1833-6972), 대검찰청(www.spo.go.kr, 국번 없이 1301), 경찰청(ecrm.police.go.kr, 국번 없이 182)에 문의할 수 있습니다.</li>
+</ul>
 
 <h2 id="ko-changes">변경 공지</h2>
 <p>이 방침이 바뀌면 새 버전을 수정일과 함께 이 페이지에 게시합니다. 앱이 새로운 종류의 데이터를 보내게 되면, 그 앱 버전을 내놓기 전에 이 페이지를 먼저 고칩니다.</p>
@@ -201,11 +233,14 @@ article+article{border-top:1px solid #ddd;margin-top:3em;padding-top:1em}
 
   // An anchor inside one language (#ko-delete) wins, then ?lang=ko (the language links), then
   // the browser's language.
+  function anchor() {
+    try { return decodeURIComponent(location.hash.slice(1)); } catch (e) { return ""; }
+  }
+
   function wanted() {
-    var id = decodeURIComponent(location.hash.slice(1));
-    var target = id && document.getElementById(id);
-    var article = target && target.closest("article");
-    if (article) return article.id;
+    var el = anchor() && document.getElementById(anchor());
+    while (el && el.tagName !== "ARTICLE") el = el.parentElement;
+    if (el) return el.id;
     var q = (location.search.match(/[?&]lang=(en|ko)\b/) || [])[1];
     if (q) return q;
     var prefs = navigator.languages || [navigator.language || ""];
@@ -226,8 +261,7 @@ article+article{border-top:1px solid #ddd;margin-top:3em;padding-top:1em}
       else links[i].removeAttribute("aria-current");
     }
     // The anchor was hidden when the browser looked for it.
-    var id = decodeURIComponent(location.hash.slice(1));
-    var el = id && document.getElementById(id);
+    var el = anchor() && document.getElementById(anchor());
     if (el) el.scrollIntoView();
   }
 
